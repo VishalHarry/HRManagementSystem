@@ -230,7 +230,7 @@ const profileData = {
   </button>
 
   <a 
-    href="/mpPerformance" 
+    href="/empPerformance" 
     className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
   >
    Employees Performance 
