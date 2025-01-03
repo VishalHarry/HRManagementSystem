@@ -6,9 +6,9 @@ import Dasboard from './Components/Employee/Dasboard'
 function App() {
   return (
     <div>
-      {/* <Outlet/> */}
-      {/* <Login/> */}
-      <Dasboard/>
+      <Outlet/>
+    
+    
     </div>
   )
 }
