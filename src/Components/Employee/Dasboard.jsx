@@ -17,6 +17,7 @@ import EditProfile from './EditProfile';
 import img from '../../assets/tool.bmp'
 import ViewProfile from './ViewProfile';
 import EventPopup from './EventPopup';
+import TakeAppraisal from './TakeAppraisal';
 
 
 const Dashboard = () => {
@@ -26,6 +27,7 @@ const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
 const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 const [isViewProfileOpen, setIsViewProfileOpen] = useState(false);
 const [showPopup, setShowPopup] = useState(false);
+const [isAppraisalOpen, setIsAppraisalOpen] = useState(false);
 const [eventData, setEventData] = useState({
   title: "React.js Advanced Workshop",
   date: "2025-01-20",
@@ -33,6 +35,28 @@ const [eventData, setEventData] = useState({
   location: "Conference Room A",
   description: "A hands-on workshop on advanced concepts in React.js.",
 });
+const appraisalData = {
+  employeeName: "Vishal Tomar",
+  position: "FrontEnd & Java Developer",
+  department: "Design & Development",
+  reviewPeriod: "2024-2025",
+  performanceRating: 4.5,
+  kpis: [
+    { goal: "Improve front-end performance", status: "Achieved" },
+    { goal: "Work on React.js projects", status: "In Progress" },
+  ],
+  feedback: {
+    managerFeedback: "Excellent work on recent project deliveries.",
+    peerFeedback: "Collaborative team player.",
+    selfAssessment: "Improved JavaScript skills and React.js expertise.",
+  },
+  salaryAdjustment: {
+    currentSalary: 50000,
+    proposedSalary: 55000,
+    bonus: 5000,
+  },
+  recommendations: "Continue with the current trajectory.",
+};
 //event pop data
 const handleEventClick = () => {
   setShowPopup(true);
@@ -80,6 +104,16 @@ const profileData = {
 
   const handleCloseProfile = () => {
     setIsViewProfileOpen(false);
+  };
+
+  //take appersal
+
+  const handleAppraisalClick = () => {
+    setIsAppraisalOpen(true);
+  };
+
+  const closeAppraisalPopup = () => {
+    setIsAppraisalOpen(false);
   };
 
     const leave=[
@@ -163,7 +197,7 @@ const profileData = {
 
       {/* Profile Section */}
      
-            <div className="bg-purple-900 text-white p-6 rounded shadow mb-6 relative">
+            <div className="x bg-purple-900 text-white p-6 rounded shadow mb-6 relative">
             <div className="flex justify-between">
                 
              <div className='flex gap-2'>
@@ -196,18 +230,18 @@ const profileData = {
   </button>
 
   <a 
-    href="#" 
+    href="/mpPerformance" 
     className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
   >
-    KPI Goals
+   Employees Performance 
   </a>
 
-  <a 
-    href="#" 
-    className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
-  >
-    Take Appraisal
-  </a>
+  <button
+        onClick={handleAppraisalClick}
+        className="bg-purple-700 text-white px-6 py-3 rounded-lg hover:bg-purple-900 transition duration-300"
+      >
+        Take Appraisal
+      </button>
 
   <button
           onClick={handlePayslipClick}
@@ -374,6 +408,13 @@ const profileData = {
          {/* Show the popup when showPopup is true */}
          {showPopup && (
         <EventPopup onClose={handleClosePopup} eventData={eventData} />
+      )}
+      {/* take apprsal */}
+      {isAppraisalOpen && (
+        <TakeAppraisal
+          appraisalData={appraisalData}
+          onClose={closeAppraisalPopup} // Pass the close function here
+        />
       )}
 
 
