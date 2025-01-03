@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   FaRegBell,
   FaEnvelope,
@@ -9,10 +9,79 @@ import {
   FaFileAlt,
   FaCalendarAlt,
 } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
+import ViewPayslip from './ViewPaySlip';
+import ApplyLeave from './ApplyLeave';
+import EditProfile from './EditProfile';
+import img from '../../assets/tool.bmp'
+import ViewProfile from './ViewProfile';
+import EventPopup from './EventPopup';
+
 
 const Dashboard = () => {
-   
+    //handlePayslip
+const [isPayslipOpen, setIsPayslipOpen] = useState(false);
+const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
+const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+const [isViewProfileOpen, setIsViewProfileOpen] = useState(false);
+const [showPopup, setShowPopup] = useState(false);
+const [eventData, setEventData] = useState({
+  title: "React.js Advanced Workshop",
+  date: "2025-01-20",
+  time: "10:00 AM - 4:00 PM",
+  location: "Conference Room A",
+  description: "A hands-on workshop on advanced concepts in React.js.",
+});
+//event pop data
+const handleEventClick = () => {
+  setShowPopup(true);
+};
+
+const handleClosePopup = () => {
+  setShowPopup(false);
+};
+
+
+  const navigate = useNavigate();
+
+  const handlePayslipClick = () => {
+    setIsPayslipOpen(true); // Open the payslip popup
+  };
+
+  const closePayslipPopup = () => {
+    setIsPayslipOpen(false); // Close the payslip popup
+  };
+
+  //handle apply leave
+  const handleLeaveModalClick = () => {
+    setIsLeaveModalOpen(!isLeaveModalOpen); // Toggle Apply Leave modal visibility
+  };
+  // State for managing Edit Profile modal visibility
+
+  const handleEditProfileClick = () => {
+    setIsEditProfileOpen(!isEditProfileOpen); // Toggle Edit Profile modal visibility
+  };
+
+//   view profile
+
+const profileData = {
+    image: img, // Replace with actual image URL
+    name: "Vishal Tomar",
+    role: "FrontEnd && Java Developer",
+    email: "vishal@gmail.com",
+    phone: "8126050903",
+    department: "Design & Development",
+  };
+
+  const handleViewProfileClick = () => {
+    setIsViewProfileOpen(true);
+  };
+
+  const handleCloseProfile = () => {
+    setIsViewProfileOpen(false);
+  };
+
     const leave=[
         { type: 'Annual Leave', used: 10, total: 60 },
         { type: 'Sick Leave', used: 0, total: 10 },
@@ -30,10 +99,7 @@ const Dashboard = () => {
         'Marriage Alert',
         'Office Space Update',
       ]
-      const handlePayslip=()=>{
-        setPayslip(!payslip)
-
-      }
+      
   return (
     <div className="bg-gray-600 min-h-screen p-4">
       {/* Navbar */}
@@ -82,35 +148,52 @@ const Dashboard = () => {
 </div>
 
         <div className="flex items-center space-x-4">
+       
           <FaRegBell className="text-xl text-gray-100" />
           <FaEnvelope className="text-xl text-gray-100" />
-          <FaUserCircle className="text-2xl text-gray-100" />
+         
+          <button
+          onClick={handleViewProfileClick}
+          className="  px-4 py-2 rounded font-bold flex items-center space-x-2 hover:text-yellow-500 transition"
+        >
+          <FaUserCircle className="text-2xl text-gray-100 hover:text-yellow-500" />
+        </button>
         </div>
       </div>
 
       {/* Profile Section */}
-      <div className="bg-purple-900 text-white p-6 rounded shadow mb-6 relative">
-        <div className="flex justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold">Redwan Husein</h2>
-            <p className="text-sm">UI / UX Designer & UX Writer</p>
+     
+            <div className="bg-purple-900 text-white p-6 rounded shadow mb-6 relative">
+            <div className="flex justify-between">
+                
+             <div className='flex gap-2'>
+                <div className='h-16 w-16 rounded-[50%] border-purple-950 border-2 overflow-hidden'><img className='h-full w-full object-cover object-center overflow-hidden'  src={profileData.image} alt="profile" /></div>
+             <div>
+                <h2 className="text-2xl font-semibold">{profileData.name}</h2>
+                <p className="text-sm">{profileData.role}</p>
+              </div>
+             </div>
+              <button
+                onClick={handleEditProfileClick} // Open Edit Profile modal on button click
+                className="bg-yellow-400 text-black px-4 py-2 rounded font-bold flex items-center space-x-2"
+              >
+                <FaEdit />
+                <span>Edit Profile</span>
+              </button>
+            </div>
           </div>
-          <button className="bg-yellow-400 text-black px-4 py-2 rounded font-bold flex items-center space-x-2">
-            <FaEdit />
-            <span>Edit Profile</span>
-          </button>
-        </div>
-      </div>
-
+    
+    
+     
       {/* Quick Actions */}
       <div className="flex justify-between space-x-4 mb-6">
   {/* Individual Buttons */}
-  <a 
-    href="#" 
+  <button
+     onClick={handleLeaveModalClick}
     className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
   >
     Apply for Leave
-  </a>
+  </button>
 
   <a 
     href="#" 
@@ -127,13 +210,12 @@ const Dashboard = () => {
   </a>
 
   <button
-    
-    onClick={handlePayslip}
-    className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
-  >
-    View Payslip
-  </button>
-
+          onClick={handlePayslipClick}
+          className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
+        >
+          View Payslip
+        </button>
+      
   <a 
     href="/employee-engagement" 
     className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
@@ -141,12 +223,12 @@ const Dashboard = () => {
     Employee-Engagement
   </a>
 
-  <a 
-    href="#" 
-    className="bg-purple-700 shadow text-gray-100 font-medium px-4 py-2 rounded text-center hover:bg-purple-900 transition duration-300"
-  >
-    Events
-  </a>
+  <button
+        onClick={handleEventClick}
+        className="bg-purple-700 text-white px-6 py-3 rounded-lg hover:bg-purple-900 transition duration-300"
+      >
+        Event
+      </button>
 </div>
 
       {/* Main Content */}
@@ -246,23 +328,55 @@ const Dashboard = () => {
     </thead>
     <tbody>
       <tr>
-        <td>Redwan Husein</td>
-        <td>UI/UX Design</td>
+        <td>Vishal Tomar</td>
+        <td>Java Project</td>
         <td className="text-green-500">In Progress</td>
       </tr>
       <tr>
-        <td>Aisha Omar</td>
-        <td>Web Development</td>
+        <td>Sambhav</td>
+        <td>BackEnd Project</td>
         <td className="text-yellow-500">On Hold</td>
       </tr>
       <tr>
-        <td>Ahmed Yusuf</td>
-        <td>Mobile App Design</td>
+        <td>Saloni</td>
+        <td>Web App Design</td>
         <td className="text-green-500">Completed</td>
       </tr>
     </tbody>
   </table>
 </div>
+ {/* Popup for Payslip */}
+ {isPayslipOpen && (
+        <div className="fixed inset-0 bg-gray-700 bg-opacity-75 flex justify-center items-start p-10 z-50">
+          <div className="bg-gray-800 p-6 rounded shadow-lg w-full max-w-2xl">
+            <ViewPayslip closePayslip={closePayslipPopup} /> {/* Pass close function */}
+          </div>
+        </div>
+      )}
+      {/* //apply leave module */}
+
+      <ApplyLeave
+        isOpen={isLeaveModalOpen} // Pass the state as a prop
+        handleClose={() => setIsLeaveModalOpen(false)} // Pass the close function as a prop
+      />
+        {/* Edit Profile Modal (Popup from Top) */}
+        <EditProfile
+        isOpen={isEditProfileOpen} // Pass the state as a prop
+        handleClose={() => setIsEditProfileOpen(false)} // Pass the close function as a prop
+      />
+            {/* ViewProfile Component */}
+            <ViewProfile
+        isOpen={isViewProfileOpen}
+        onClose={handleCloseProfile}
+        profileData={profileData}
+      />
+
+         {/* Show the popup when showPopup is true */}
+         {showPopup && (
+        <EventPopup onClose={handleClosePopup} eventData={eventData} />
+      )}
+
+
 
       </div>
     </div>

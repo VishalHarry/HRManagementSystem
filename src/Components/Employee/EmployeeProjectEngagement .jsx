@@ -11,15 +11,15 @@ const EmployeeProjectEngagement = () => {
         {/* Employee Details */}
         <div className="bg-gray-700 p-4 rounded shadow">
           <h4 className="text-gray-100 font-semibold mb-4">Employee Details</h4>
-          <p className="text-gray-100"><strong>Name:</strong> Redwan Husein</p>
-          <p className="text-gray-100"><strong>Role:</strong> UI/UX Designer & UX Writer</p>
-          <p className="text-gray-100"><strong>Email:</strong> redwan.h@company.com</p>
+          <p className="text-gray-100"><strong>Name:</strong> Vishal tomar</p>
+          <p className="text-gray-100"><strong>Role:</strong>FrontEnd && Java Developer</p>
+          <p className="text-gray-100"><strong>Email:</strong> vishal.h@company.com</p>
         </div>
 
         {/* Project Overview */}
         <div className="bg-gray-700 p-4 rounded shadow">
           <h4 className="text-gray-100 font-semibold mb-4">Project Overview</h4>
-          <p className="text-gray-100"><strong>Project:</strong> UI/UX Design</p>
+          <p className="text-gray-100"><strong>Project:</strong> FrontEnd Design</p>
           <p className="text-gray-100"><strong>Status:</strong> In Progress</p>
           <p className="text-gray-100"><strong>Start Date:</strong> January 2025</p>
           <p className="text-gray-100"><strong>Expected End Date:</strong> March 2025</p>
@@ -68,13 +68,13 @@ const EmployeeProjectEngagement = () => {
           </thead>
           <tbody>
             <tr>
-              <td>Design UI/UX Wireframes</td>
+              <td>Design FrontEnd Rankora</td>
               <td>Jan 15, 2025</td>
               <td className="text-green-500">Completed</td>
               <td>100%</td>
             </tr>
             <tr>
-              <td>Create Prototype</td>
+              <td>BackEnd in Hospital Management System</td>
               <td>Feb 1, 2025</td>
               <td className="text-yellow-500">In Progress</td>
               <td>50%</td>

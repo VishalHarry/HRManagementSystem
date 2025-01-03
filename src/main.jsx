@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './Components/Login.jsx';
 import Dashboard from './Components/Employee/Dasboard.jsx';
 import EmployeeProjectEngagement from './Components/Employee/EmployeeProjectEngagement .jsx';
+import ViewPayslip from './Components/Employee/ViewPaySlip.jsx';
 
 // Define the routes
 const router = createBrowserRouter([
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
       {
         path:'/employee-engagement',
         element:<EmployeeProjectEngagement/>
-      }
+      },
+      
     ]
   },
 ]);
