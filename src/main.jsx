@@ -8,6 +8,7 @@ import Dashboard from './Components/Employee/Dasboard.jsx';
 import EmployeeProjectEngagement from './Components/Employee/EmployeeProjectEngagement .jsx';
 import ViewPayslip from './Components/Employee/ViewPaySlip.jsx';
 import EmpPerformance from './Components/EmpPerformance .jsx';
+import AdminDashboard from './Components/AdminInfo/AdminDashboard.jsx';
 
 // Define the routes
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path:'/empPerformance',
         element:<EmpPerformance/>
+      },
+      {
+        path:'/admindash',
+        element:<AdminDashboard/>
       }
       
     ]
